@@ -126,4 +126,101 @@ def game_hash
   }
 end
 
-# Write code here
+def num_points_scored(name)
+  flag = false
+  
+  for i in game_hash[:home][:players]
+    if i[:player_name] == name
+      flag = true
+      return i[:points]
+    end
+  end
+  
+  if flag == false
+    for i in game_hash[:away][:players]
+      if i[:player_name] == name
+        flag = true
+        return i[:points]
+      end
+    end
+  end
+end
+  
+def shoe_size(name)
+  flag = false
+  
+  for i in game_hash[:home][:players]
+    if i[:player_name] == name
+      flag = true
+      return i[:shoe]
+    end
+  end
+  
+  if flag == false
+    for i in game_hash[:away][:players]
+      if i[:player_name] == name
+        return i[:shoe]
+      end
+    end
+  end
+end
+
+def team_colors(team)
+  game_hash.each{|key, value|
+    if value[:team_name] == team
+      return value[:colors]
+    end
+  }
+end
+
+def team_names
+  array = []
+  game_hash.each{|key, value|
+    array.push(value[:team_name])}
+  
+  return array
+end
+  
+def player_numbers(team)
+  array = []
+  game_hash.each{|key, value|
+  
+    if value[:team_name] == team
+      value[:players].each{ |player|
+      array.push(player[:number])}
+    end
+  }
+  return array
+end
+
+def player_stats(name)
+  game_hash.each{|key, value|
+  
+    value[:players].each{ |player|
+      if player[:player_name] == name
+        return player
+      end
+    }
+  }
+end
+
+def big_shoe_rebounds
+  max = 0
+  max_shoe_reb = nil
+  game_hash.each{|key, value|
+    value[:players].each{ |player|
+      if player[:shoe] > max
+        max = player[:shoe]
+        max_shoe_reb = player[:rebounds]
+      end
+    }
+  }
+  return max_shoe_reb
+end
+      
+      
+  
+  
+  
+    
+  
