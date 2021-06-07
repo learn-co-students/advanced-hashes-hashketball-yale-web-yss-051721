@@ -134,10 +134,7 @@ def num_points_scored(player_n)
   end
 end
 
-# Alternate code
-# def num_points_scored(player_n)
-#   player_stats(player_n)[:points]
-# end
+
 
 def shoe_size(player_n)
   game_hash.each do |home_away, keys|
@@ -147,10 +144,6 @@ def shoe_size(player_n)
   end
 end
 
-# Alternate code
-# def shoe_size(player_n)
-#   player_stats(player_n)[:shoe]
-# end
 
 def team_colors(team_name)
   game_hash.each do |home_away, keys|
