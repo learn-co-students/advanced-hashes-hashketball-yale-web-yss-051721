@@ -1,4 +1,7 @@
+require "pry"
+
 # Write your code below game_hash
+
 def game_hash
   {
     home: {
@@ -126,4 +129,82 @@ def game_hash
   }
 end
 
-# Write code here
+def get_home_team
+  game_hash[:home]
+end
+
+def get_home_players
+   get_home_team[:players]
+#  game_hash[:home][:players]
+end
+
+def get_all_players
+  get_home_players + game_hash[:away][:players]
+end
+
+def find_team(team_name)
+  game_hash.values.find do |team|
+    team[:team_name] == team_name
+    # binding.pry
+  end
+end
+
+def find_player(name)
+  get_all_players.find { |player_hash| player_hash[:player_name] == name}
+end
+
+def num_points_scored(name)
+  find_player(name)[:points]
+end
+
+def shoe_size(name)
+  find_player(name)[:shoe]
+end
+
+def team_colors(team_name)
+  # find the team hash 
+  team_hash = find_team(team_name)
+  # pull out its colors 
+  team_hash[:colors]
+#  binding.pry
+end
+
+def team_names
+  # iterate over the game hash 
+  # from each team hash, we want to pull out the team_name
+  values_arr = game_hash.values
+  names_arr = values_arr.map do |team_hash|
+    team_hash[:team_name]
+   end
+end
+
+def player_numbers(team_name)
+  find_team(team_name)[:players].map { |player_hash| player_hash[:number] }
+#  binding.pry
+end
+
+def player_stats(name)
+  player_hash = find_player(name)
+  player_hash
+#  binding.pry
+end 
+
+# binding.pry
+
+def big_shoe_rebounds
+  # find player with biggest shoe size 
+  player = get_all_players.max_by {|player_hash| player_hash[:shoe]}
+  # return that player's number of rebounds 
+  return player[:rebounds]
+#  binding.pry
+end
+
+
+# binding.pry
+
+
+
+
+
+
+
